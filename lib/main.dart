@@ -30,7 +30,8 @@ class MyApp extends StatelessWidget {
       home: const HomeScreen(),
       theme: ThemeData.dark(),
       routes: {
-        'characters' :(context) => const CharactersScreen()
+        'characters' :(context) => const CharactersScreen(),
+        'character' :(context) => const CharacterDetailInfoScreen(),
       },
     );
   }

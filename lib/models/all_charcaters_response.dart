@@ -54,7 +54,7 @@ class Character {
         required this.status,
         required this.species,
         required this.type,
-        this.gender,
+        required this.gender,
         required this.origin,
         required this.location,
         required this.image,
@@ -68,7 +68,7 @@ class Character {
     String status;
     String species;
     String type;
-    Gender? gender;
+    String gender;
     Location origin;
     Location location;
     String image;
@@ -84,7 +84,7 @@ class Character {
         status: json["status"],
         species: json["species"],
         type: json["type"],
-        gender: genderValues.map[json["gender"]],
+        gender: json["gender"],
         origin: Location.fromMap(json["origin"]),
         location: Location.fromMap(json["location"]),
         image: json["image"],

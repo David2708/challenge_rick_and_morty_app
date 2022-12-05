@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:rick_and_morty_app/models/all_charcaters_response.dart';
+import 'package:rick_and_morty_app/widgets/widgets.dart';
 
 class CharacterInfoGeneral extends StatelessWidget {
 
@@ -70,7 +71,7 @@ class _CharacterInfo extends StatelessWidget {
             // indicado de estatus, status - species
             Row(
               children: [
-                _IndicadorStatus(character: character),
+                StatusIndicator(character: character),
                 Text(character.status),
                 const Text(' - '),
                 Text(character.species)
@@ -90,31 +91,6 @@ class _CharacterInfo extends StatelessWidget {
   }
 }
 
-class _IndicadorStatus extends StatelessWidget {
-  const _IndicadorStatus({
-    Key? key,
-    required this.character,
-  }) : super(key: key);
-
-  final Character character;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 8,
-      height: 8,
-      margin: const EdgeInsets.only(right: 5),
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: character.status == 'Alive'
-            ? Colors.green.shade600
-            : character.status == 'Dead'
-            ? Colors.red
-            : Colors.black,
-      ),
-    );
-  }
-}
 
 class _CharacterImage extends StatelessWidget {
 
