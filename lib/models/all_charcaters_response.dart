@@ -5,6 +5,10 @@
 
 import 'dart:convert';
 
+import 'info_models.dart';
+import 'location_model.dart';
+
+
 class AllCharactersResponse {
     AllCharactersResponse({
         required this.info,
@@ -19,30 +23,6 @@ class AllCharactersResponse {
     factory AllCharactersResponse.fromMap(Map<String, dynamic> json) => AllCharactersResponse(
         info: Info.fromMap(json["info"]),
         results: List<Character>.from(json["results"].map((x) => Character.fromMap(x))),
-    );
-
-}
-
-class Info {
-    Info({
-        required this.count,
-        required this.pages,
-        required this.next,
-        this.prev,
-    });
-
-    int count;
-    int pages;
-    String next;
-    dynamic prev;
-
-    factory Info.fromJson(String str) => Info.fromMap(json.decode(str));
-
-    factory Info.fromMap(Map<String, dynamic> json) => Info(
-        count: json["count"],
-        pages: json["pages"],
-        next: json["next"],
-        prev: json["prev"],
     );
 
 }
@@ -102,24 +82,6 @@ final genderValues = EnumValues({
     "Male": Gender.MALE,
     "unknown": Gender.UNKNOWN
 });
-
-class Location {
-    Location({
-        required this.name,
-        required this.url,
-    });
-
-    String name;
-    String url;
-
-    factory Location.fromJson(String str) => Location.fromMap(json.decode(str));
-
-    factory Location.fromMap(Map<String, dynamic> json) => Location(
-        name: json["name"],
-        url: json["url"],
-    );
-
-}
 
 class EnumValues<T> {
     Map<String, T> map;

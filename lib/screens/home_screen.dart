@@ -39,7 +39,7 @@ class _ListButtons extends StatelessWidget {
       children: const [
 
         ButtonWidget( name: 'Characters', route: 'characters'),
-        ButtonWidget( name: 'Locations', route: 'characters' ),
+        ButtonWidget( name: 'Locations', route: 'locations' ),
         ButtonWidget( name: 'Episodes', route: 'characters' ),
 
       ],

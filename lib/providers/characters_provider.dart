@@ -24,6 +24,7 @@ class CharactersProvider extends ChangeNotifier {
 
     charcaters.addAll(newResponse.results);
     notifyListeners();
+  
   } 
 
 }
