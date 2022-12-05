@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rick_and_morty_app/providers/episodes_provider.dart';
 import 'package:rick_and_morty_app/providers/locations_provider.dart';
+import 'package:rick_and_morty_app/screens/episode_detils_info.dart';
 
 import 'providers/characters_provider.dart';
 import 'screens/screens.dart';
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
         
         'character' :(context) => const CharacterDetailInfoScreen(),
         'location' :(context) => const LocationDetailInfoScreen(),
+        'episode' :(context) => const EpisodeDetailsInfoScreen(),
       },
     );
   }

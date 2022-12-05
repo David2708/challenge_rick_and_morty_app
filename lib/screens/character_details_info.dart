@@ -24,8 +24,6 @@ class CharacterDetailInfoScreen extends StatelessWidget {
 
                 _DetailsInfo( character: character ),
 
-                
-
                 const SizedBox(height: 500,)
               ]),
             ),

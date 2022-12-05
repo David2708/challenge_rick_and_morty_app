@@ -29,6 +29,7 @@ class EpisodesScreen extends StatelessWidget {
         : ListView.builder(
           itemCount: episodes.length,
           itemBuilder: (context, index) => GestureDetector(
+            onTap: () => Navigator.pushNamed(context, 'episode', arguments: episodes[index]) ,
             child: InformationNameWidget(name: episodes[index].name,),
           ),
         )
