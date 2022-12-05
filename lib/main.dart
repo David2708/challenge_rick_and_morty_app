@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:rick_and_morty_app/providers/episodes_provider.dart';
 import 'package:rick_and_morty_app/providers/locations_provider.dart';
 
 import 'providers/characters_provider.dart';
@@ -16,6 +17,7 @@ class AppState extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => CharactersProvider()),
         ChangeNotifierProvider(create: (_) => LocationsProvider()),
+        ChangeNotifierProvider(create: (_) => EpisodesProvider()),
       ],
       child: const MyApp(),
     );
@@ -34,6 +36,7 @@ class MyApp extends StatelessWidget {
       routes: {
         'characters' :(context) => const CharactersScreen(),
         'locations' :(context) => const LocationsScreen(),
+        'episodes' :(context) => const EpisodesScreen(),
         
         'character' :(context) => const CharacterDetailInfoScreen(),
         'location' :(context) => const LocationDetailInfoScreen(),

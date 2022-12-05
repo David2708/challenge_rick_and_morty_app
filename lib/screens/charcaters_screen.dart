@@ -25,7 +25,9 @@ class CharactersScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: ListView.builder(
+        child: characters.isEmpty
+          ? const Center(child: CircularProgressIndicator(color: Colors.grey),)
+          : ListView.builder(
           itemCount: characters.length,
           itemBuilder: (context, index) => GestureDetector(
             onTap: () => Navigator.pushNamed(context, 'character', arguments: characters[index]),

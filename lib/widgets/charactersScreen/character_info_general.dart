@@ -66,9 +66,9 @@ class _CharacterInfo extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            // NOmbre del personaje
+            // Nombre del personaje
             Text(character.name, style: const TextStyle( fontSize: 20, fontWeight: FontWeight.bold ),),
-            // indicado de estatus, status - species
+            // indicador de estatus, status - species
             Row(
               children: [
                 StatusIndicator(character: character),

@@ -40,7 +40,7 @@ class _ListButtons extends StatelessWidget {
 
         ButtonWidget( name: 'Characters', route: 'characters'),
         ButtonWidget( name: 'Locations', route: 'locations' ),
-        ButtonWidget( name: 'Episodes', route: 'characters' ),
+        ButtonWidget( name: 'Episodes', route: 'episodes' ),
 
       ],
     );
