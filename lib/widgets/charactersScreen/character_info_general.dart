@@ -45,6 +45,7 @@ class CharacterInfoGeneral extends StatelessWidget {
   }
 }
 
+
 class _CharacterInfo extends StatelessWidget {
   const _CharacterInfo({
     Key? key,
@@ -64,22 +65,52 @@ class _CharacterInfo extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
+            // NOmbre del personaje
             Text(character.name, style: const TextStyle( fontSize: 20, fontWeight: FontWeight.bold ),),
+            // indicado de estatus, status - species
             Row(
               children: [
+                _IndicadorStatus(character: character),
                 Text(character.status),
                 const Text(' - '),
                 Text(character.species)
               ],
             ),
-            const Text('First seen in::'),
+            // Ubicacion de la primera vez que se vio el personaje 
+            const Text('First seen in:', style: TextStyle(fontWeight: FontWeight.bold),),
             Text(character.origin.name),
-    
-            const Text('Last known location:'),
+            // Ubicacion de ultima vez en la que se vio el personaje
+            const Text('Last known location:',style: TextStyle(fontWeight: FontWeight.bold)),
             Text(character.location.name),
             
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _IndicadorStatus extends StatelessWidget {
+  const _IndicadorStatus({
+    Key? key,
+    required this.character,
+  }) : super(key: key);
+
+  final Character character;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 8,
+      height: 8,
+      margin: const EdgeInsets.only(right: 5),
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: character.status == 'Alive'
+            ? Colors.green.shade600
+            : character.status == 'Dead'
+            ? Colors.red
+            : Colors.black,
       ),
     );
   }
@@ -102,6 +133,7 @@ class _CharacterImage extends StatelessWidget {
         image: NetworkImage( urlImage ),
         height: 160,
         width: 160,
+        fit: BoxFit.cover,
       ),
     );
   }
