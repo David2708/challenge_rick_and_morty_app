@@ -34,7 +34,7 @@ class EpisodeDetailsInfoScreen extends StatelessWidget {
 
               const Padding(
                 padding: EdgeInsets.only(left: 20),
-                child: Text('Characters in this episode', style: TextStyle( fontSize: 20 , fontWeight: FontWeight.bold),),
+                child: Text('Other characters in this episode', style: TextStyle( fontSize: 20 , fontWeight: FontWeight.bold),),
               ),
               const SizedBox(height: 30),
 

@@ -24,15 +24,18 @@ class EpisodesScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Episodes'),
       ),
-      body: episodes.isEmpty
-        ? const Center(child: CircularProgressIndicator(color: Colors.grey))
-        : ListView.builder(
-          itemCount: episodes.length,
-          itemBuilder: (context, index) => GestureDetector(
-            onTap: () => Navigator.pushNamed(context, 'episode', arguments: episodes[index]) ,
-            child: InformationNameWidget(name: episodes[index].name,),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: episodes.isEmpty
+          ? const Center(child: CircularProgressIndicator(color: Colors.grey))
+          : ListView.builder(
+            itemCount: episodes.length,
+            itemBuilder: (context, index) => GestureDetector(
+              onTap: () => Navigator.pushNamed(context, 'episode', arguments: episodes[index]) ,
+              child: InformationNameWidget(name: episodes[index].name,),
+            ),
           ),
-        )
+      )
     );
   }
 }
