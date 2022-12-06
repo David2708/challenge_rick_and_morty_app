@@ -12,6 +12,7 @@ class CharactersProvider extends ChangeNotifier {
   List<Character> singleCharacters = [];
 
   Map<String, List<Character>> charactersByLocations = {};
+  Map<String, List<Character>> charactersByEpisode = {};
 
 
   CharactersProvider(){
@@ -35,9 +36,10 @@ class CharactersProvider extends ChangeNotifier {
     return newResponse;
   }
 
- 
+  // Recibe una lista de ids de personajes que aparecen en la ubicacion
+  // Recibe el id de la ubicacion para mantener en memoria
+  // Retorna una lista de personjes que parecen en la ubicacion
   Future<List<Character>> getcharactersByLocations(String id, List listIds)async{
-    print('Haciendo peticiones');
 
     if(charactersByLocations.containsKey(id)) return charactersByLocations[id]!;
 
@@ -50,7 +52,25 @@ class CharactersProvider extends ChangeNotifier {
     charactersByLocations[id] = listCharacters;
 
     return listCharacters;
- }
+  }
+
+  // Recibe una lista de ids de personajes que aparecen en ese episodio
+  // Recibe el id del episodio para mantener en memoria
+  // Retorna una lista de personjes que parecen en el episodio
+  Future<List<Character>> getcharactersByEpisode(String id, List listIds)async{
+
+    if(charactersByEpisode.containsKey(id)) return charactersByEpisode[id]!;
+
+    List<Character> listCharacters = [];
+
+    for (String item in listIds) {
+      listCharacters.add( await getASingleCharacter(item));
+    }
+
+    charactersByEpisode[id] = listCharacters;
+
+    return listCharacters;
+  }
   
 
 }
