@@ -67,22 +67,30 @@ class _CharacterInfo extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             // Nombre del personaje
-            Text(character.name, style: const TextStyle( fontSize: 20, fontWeight: FontWeight.bold ),),
+            Text(character.name, style: const TextStyle( 
+              fontSize: 20, 
+              fontWeight: FontWeight.bold ),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              ),
             // indicador de estatus, status - species
             Row(
               children: [
                 StatusIndicator(character: character),
                 Text(character.status),
                 const Text(' - '),
-                Text(character.species)
+                ConstrainedBox(
+                  constraints: BoxConstraints(maxWidth: (size.width - 200) * 0.4),
+                  child: Text(character.species, overflow: TextOverflow.ellipsis,)
+                )
               ],
             ),
             // Ubicacion de la primera vez que se vio el personaje 
             const Text('First seen in:', style: TextStyle(fontWeight: FontWeight.bold),),
-            Text(character.origin.name),
+            Text(character.origin.name, overflow: TextOverflow.ellipsis,),
             // Ubicacion de ultima vez en la que se vio el personaje
             const Text('Last known location:',style: TextStyle(fontWeight: FontWeight.bold)),
-            Text(character.location.name),
+            Text(character.location.name, overflow: TextOverflow.ellipsis,),
             
           ],
         ),

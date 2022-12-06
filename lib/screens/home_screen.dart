@@ -16,7 +16,7 @@ class HomeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: const [
 
-               Text('Ricl And Morty', style: TextStyle( fontSize: 30, fontWeight: FontWeight.bold ),),
+               Text('Rick And Morty', style: TextStyle( fontSize: 30, fontWeight: FontWeight.bold ),),
 
               _ListButtons()
 

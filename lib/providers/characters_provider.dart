@@ -1,5 +1,7 @@
 
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -10,6 +12,9 @@ class CharactersProvider extends ChangeNotifier {
 
   List<Character> charcaters = [];
   List<Character> singleCharacters = [];
+  int _charactersPage = 0;
+  bool _isLoading = false;
+  bool _makerequest = false;
 
   Map<String, List<Character>> charactersByLocations = {};
   Map<String, List<Character>> charactersByEpisode = {};
@@ -19,14 +24,30 @@ class CharactersProvider extends ChangeNotifier {
     getAllCharacters();
   }
 
+  getIsloading() => _isLoading;
+  getMakeRequest() => _makerequest;
+
+  setCharacterPage(int value) => _charactersPage = value;
+  
 
   Future getAllCharacters( ) async {
-    final url = Uri.https( 'rickandmortyapi.com', '/api/character' );
-    final response = await http.get(url);
-    final newResponse = AllCharactersResponse.fromJson(response.body);
 
-    charcaters.addAll(newResponse.results);
-    notifyListeners();
+    if(_isLoading) return;
+    
+    _isLoading = true;
+    _charactersPage ++;
+    if ( _charactersPage < 43){
+      final url = Uri.https( 'rickandmortyapi.com', '/api/character/' ,{
+        'page' : '$_charactersPage'
+      });
+      final response = await http.get(url);
+      final newResponse = AllCharactersResponse.fromJson(response.body);
+
+      charcaters.addAll(newResponse.results);
+      _isLoading = false;
+      _makerequest = true;
+      notifyListeners();
+    }
   }
 
   getASingleCharacter( String id ) async{

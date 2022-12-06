@@ -14,6 +14,7 @@ class AppState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => CharactersProvider()),
@@ -30,12 +31,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return  MaterialApp(
       title: 'Material App',
       home: const HomeScreen(),
       theme: ThemeData.dark(),
       routes: {
-        'characters' :(context) => const CharactersScreen(),
+        'characters' :(context) => CharactersScreen(),
         'locations' :(context) => const LocationsScreen(),
         'episodes' :(context) => const EpisodesScreen(),
         
