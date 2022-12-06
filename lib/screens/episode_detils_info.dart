@@ -13,7 +13,7 @@ class EpisodeDetailsInfoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final Episode episode =  ModalRoute.of(context)!.settings.arguments as Episode;
-    
+
     return Scaffold(
       body: SafeArea(
         child: Center(

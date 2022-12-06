@@ -1,5 +1,7 @@
 
 
+export 'package:rick_and_morty_app/widgets/character_card_widgets.dart';
+
 export 'package:rick_and_morty_app/widgets/information_name_widget.dart';
 
 export 'package:rick_and_morty_app/widgets/character_attribute_value.dart';
