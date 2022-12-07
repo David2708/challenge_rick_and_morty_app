@@ -7,6 +7,7 @@ import 'package:rick_and_morty_app/providers/episodes_provider.dart';
 import 'package:rick_and_morty_app/widgets/widgets.dart';
 
 import '../models/models.dart';
+import '../search/search_episode.dart';
 
 class EpisodesScreen extends StatelessWidget {
    
@@ -23,6 +24,12 @@ class EpisodesScreen extends StatelessWidget {
     return  Scaffold(
       appBar: AppBar(
         title: const Text('Episodes'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search_outlined),
+            onPressed: () => showSearch(context: context, delegate: SearchEpisodeDelegate()),
+          )
+        ],
       ),
       body: Stack(
         children: [

@@ -16,32 +16,32 @@ class EpisodeDetailsInfoScreen extends StatelessWidget {
 
     return Scaffold(
       body: SafeArea(
-        child: Center(
-           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-
-              const SizedBox(height: 50),
-
-              const Padding(
-                padding: EdgeInsets.only(left: 20),
-                child: Text('Episode Info', style: TextStyle( fontSize: 30 , fontWeight: FontWeight.bold),),
-              ),
-              const SizedBox(height: 50),
-
-              EpisodeInfo( episode: episode ),
-              const SizedBox(height: 50),
-
-              const Padding(
-                padding: EdgeInsets.only(left: 20),
-                child: Text('Characters in this episode', style: TextStyle( fontSize: 20 , fontWeight: FontWeight.bold),),
-              ),
-              const SizedBox(height: 30),
-
-              CharactersByEpisode( episode: episode, )
-
-            ],
-           ),
+        child: SingleChildScrollView(
+          child: Column(
+           crossAxisAlignment: CrossAxisAlignment.start,
+           children: [
+        
+             const SizedBox(height: 50),
+        
+             const Padding(
+               padding: EdgeInsets.only(left: 20),
+               child: Text('Episode Info', style: TextStyle( fontSize: 30 , fontWeight: FontWeight.bold),),
+             ),
+             const SizedBox(height: 50),
+        
+             EpisodeInfo( episode: episode ),
+             const SizedBox(height: 50),
+        
+             const Padding(
+               padding: EdgeInsets.only(left: 20),
+               child: Text('Characters in this episode', style: TextStyle( fontSize: 20 , fontWeight: FontWeight.bold),),
+             ),
+             const SizedBox(height: 30),
+        
+             CharactersByEpisode( episode: episode, )
+        
+           ],
+          ),
         ),
       ),
     );
