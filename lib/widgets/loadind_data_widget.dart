@@ -4,16 +4,16 @@ import 'package:flutter/material.dart';
 class LoadingData extends StatelessWidget {
   const LoadingData({
     Key? key,
-    required this.size,
   }) : super(key: key);
-
-  final Size size;
 
   @override
   Widget build(BuildContext context) {
+
+    final size = MediaQuery.of(context).size;
+
     return Positioned(
       bottom: 20,
-      left: (size.width / 2) - 50,
+      left: (size.width / 2) - 25,
       child: Container(
         padding: const EdgeInsets.all(10),
         height: 50,

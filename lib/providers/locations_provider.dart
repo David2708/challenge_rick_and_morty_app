@@ -15,7 +15,7 @@ class LocationsProvider extends ChangeNotifier{
 
 
   LocationsProvider(){
-    _locationPage = 0;
+    _locationPage = 1;
     _makeRequest = false;
     getAllLocations();
   }
@@ -28,22 +28,19 @@ class LocationsProvider extends ChangeNotifier{
 
     if(_isLoading) return;
 
-    _locationPage++;
-    if(_locationPage < 8){
-
+    if(_locationPage <= 7){
       _isLoading = true;
-       
       final url = Uri.https( 'rickandmortyapi.com', '/api/location/', {
         'page':'$_locationPage'
       } );
 
       final response = await http.get(url);
       final newResponse = AllLocationsModel.fromJson(response.body);
-
       locations.addAll(newResponse.results);
 
-      _isLoading= false;
+      _isLoading = false;
       _makeRequest = true;
+      _locationPage++;
       notifyListeners();
     
     }

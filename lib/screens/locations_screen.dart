@@ -12,8 +12,9 @@ class LocationsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
-    final size = MediaQuery.of(context).size;
     final locationsProvider = Provider.of<LocationsProvider>(context);
+
+    print('${locationsProvider.getIsloading()} - ${locationsProvider.getMakeRequest()}');
 
     List<Location> locations = locationsProvider.locations;
     
@@ -29,7 +30,7 @@ class LocationsScreen extends StatelessWidget {
           ),
 
           if(locationsProvider.getIsloading() && locationsProvider.getMakeRequest())
-            LoadingData(size: size),
+            const LoadingData(),
         ],
       )
     );

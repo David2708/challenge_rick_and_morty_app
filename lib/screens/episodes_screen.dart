@@ -16,25 +16,24 @@ class EpisodesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final episodesProvider = Provider.of<EpisodesProvider>(context);
-
     List<Episode> episodes = episodesProvider.episodes;
 
+    print('${episodesProvider.getIsloading()} - ${episodesProvider.getmakeRequest()}');
 
     return  Scaffold(
       appBar: AppBar(
         title: const Text('Episodes'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: episodes.isEmpty
-          ? const Center(child: CircularProgressIndicator(color: Colors.grey))
-          : ListView.builder(
-            itemCount: episodes.length,
-            itemBuilder: (context, index) => GestureDetector(
-              onTap: () => Navigator.pushNamed(context, 'episode', arguments: episodes[index]) ,
-              child: InformationNameWidget(name: episodes[index].name,),
-            ),
+      body: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: EpisodeBuilder(episodes: episodes, onNexPage: episodesProvider.getEpisodes,)
           ),
+
+          if(episodesProvider.getIsloading() && episodesProvider.getmakeRequest())
+            const LoadingData()
+        ],
       )
     );
   }

@@ -23,21 +23,20 @@ class CharactersScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Characters'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Stack(
-          children: [
-            
-            // Muestra la lista de caracteres
-            CharacterBuilder( characters: characters, onNextPage: charcatersProvider.getAllCharacters, ),
+      body: Stack(
+        children: [
+          
+          // Muestra la lista de caracteres
+          Padding(
+            padding: const EdgeInsets.symmetric( horizontal: 20),
+            child: CharacterBuilder( characters: characters, onNextPage: charcatersProvider.getAllCharacters, ),
+          ),
 
-            // si es la primera vez que se estan obteniendo los datos no mostrara el loading
-            if(charcatersProvider.getIsloading() && charcatersProvider.getMakeRequest() )
-              LoadingData(size: size)
+          // si es la primera vez que se estan obteniendo los datos no mostrara el loading
+          if(charcatersProvider.getIsloading() && charcatersProvider.getMakeRequest() )
+            const LoadingData()
 
-          ],
-        ),
-  
+        ],
       ),
     );
   }

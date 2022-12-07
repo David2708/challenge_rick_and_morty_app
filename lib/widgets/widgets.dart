@@ -1,5 +1,7 @@
 
 
+export 'package:rick_and_morty_app/widgets/episodeScreen/episode_builder.dart';
+
 export 'package:rick_and_morty_app/widgets/loadind_data_widget.dart';
 
 export 'package:rick_and_morty_app/widgets/locationsScreen/locations_builder.dart';
@@ -17,4 +19,5 @@ export 'package:rick_and_morty_app/widgets/information_name_widget.dart';
 export 'package:rick_and_morty_app/widgets/locationDetailsInfoScreen/location_info_widget.dart';
 export 'package:rick_and_morty_app/widgets/locationDetailsInfoScreen/residentes_by_location_widget.dart';
 export 'package:rick_and_morty_app/widgets/status_indicator_widget.dart';
+
 

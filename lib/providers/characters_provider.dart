@@ -21,7 +21,7 @@ class CharactersProvider extends ChangeNotifier {
 
 
   CharactersProvider(){
-    _charactersPage = 0;
+    _charactersPage = 1;
     _makeRequest = false;
     getAllCharacters();
   }
@@ -36,9 +36,8 @@ class CharactersProvider extends ChangeNotifier {
 
     if(_isLoading) return;
     
-    _isLoading = true;
-    _charactersPage ++;
-    if ( _charactersPage < 43){
+    if ( _charactersPage <= 42){
+      _isLoading = true;
       final url = Uri.https( 'rickandmortyapi.com', '/api/character/' ,{
         'page' : '$_charactersPage'
       });
@@ -48,6 +47,7 @@ class CharactersProvider extends ChangeNotifier {
       charcaters.addAll(newResponse.results);
       _isLoading = false;
       _makeRequest = true;
+      _charactersPage ++;
       notifyListeners();
     }
   }
