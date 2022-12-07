@@ -14,6 +14,9 @@ class EpisodesProvider extends ChangeNotifier {
   late bool _makeRequest;
   List<Episode> episodes = [];
 
+  Map<String, List<Episode>> episodesByCharacter = {};
+
+
   final debouncer = Debouncer(
     duration: const Duration( milliseconds: 500 ),
   );
@@ -31,6 +34,29 @@ class EpisodesProvider extends ChangeNotifier {
 
   getIsloading() => _isloading;
   getmakeRequest() => _makeRequest;
+
+  Future<Episode> getEpisodeById( String id ) async{
+    final url = Uri.https( 'rickandmortyapi.com', '/api/episode/$id');
+    final response = await http.get(url);
+    final newResponse = Episode.fromJson(response.body);
+    return newResponse;
+  }
+
+  Future<List<Episode>> getEpisodesByCharacter(String id, List idsEpisodes)async{
+
+    if(episodesByCharacter.containsKey(id)) return episodesByCharacter[id]!;
+    
+    List<Episode> listCharacters = [];
+    
+    for (String item in idsEpisodes) {
+      listCharacters.add( await getEpisodeById(item));
+    }
+    episodesByCharacter[id] = listCharacters;
+    return listCharacters;
+
+  }
+
+
 
   Future<List<Episode>> getEpisodeByName( String name ) async {
 

@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:rick_and_morty_app/helpers/debouncer.dart';
 
 import 'package:rick_and_morty_app/models/all_charcaters_response.dart';
+import 'package:rick_and_morty_app/models/all_episodes_model.dart';
 
 
 class CharactersProvider extends ChangeNotifier {
@@ -37,8 +38,9 @@ class CharactersProvider extends ChangeNotifier {
   setCharacterPage(int value) => _charactersPage = value;
   
   final StreamController<List<Character>> _suggestionStreamController = StreamController.broadcast();
-
   Stream<List<Character>> get suggestionStream => _suggestionStreamController.stream;
+
+
 
   Future getAllCharacters( ) async {
 
@@ -75,7 +77,7 @@ class CharactersProvider extends ChangeNotifier {
 
   }
 
-  getASingleCharacter( String id ) async{
+  getCharacterById( String id ) async{
     final url = Uri.https( 'rickandmortyapi.com', '/api/character/$id');
     final response = await http.get(url);
     final newResponse = Character.fromJson(response.body);
@@ -92,7 +94,7 @@ class CharactersProvider extends ChangeNotifier {
     List<Character> listCharacters = [];
 
     for (String item in listIds) {
-      listCharacters.add( await getASingleCharacter(item));
+      listCharacters.add( await getCharacterById(item));
     }
 
     charactersByLocations[id] = listCharacters;
@@ -110,7 +112,7 @@ class CharactersProvider extends ChangeNotifier {
     List<Character> listCharacters = [];
 
     for (String item in listIds) {
-      listCharacters.add( await getASingleCharacter(item));
+      listCharacters.add( await getCharacterById(item));
     }
 
     charactersByEpisode[id] = listCharacters;

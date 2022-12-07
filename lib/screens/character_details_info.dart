@@ -57,21 +57,29 @@ class _DetailsInfo extends StatelessWidget {
         margin: const EdgeInsets.only(top: 40),
         width: double.infinity,
         
-        child: Column(
-          children: [
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+        
+              CharacterStatus( character: character, size: size, ),
+              Container( margin: const EdgeInsets.only( bottom: 20 ) ),
+              CharacterAtrributeAndValue( attribute: 'Species', value: character.species, size: size, ),
+        
+              if (character.type != '')
+                CharacterAtrributeAndValue( attribute: 'Type', value: character.type, size: size, ),
+                
+              CharacterAtrributeAndValue( attribute: 'Gender', value: character.gender, size: size, ),
+              CharacterAtrributeAndValue( attribute: 'First seen in', value: character.origin.name, size: size, ),
+              CharacterAtrributeAndValue( attribute: 'Last known location', value: character.location.name, size: size, ),
 
-            CharacterStatus( character: character, size: size, ),
-            Container( margin: const EdgeInsets.only( bottom: 20 ) ),
-            CharacterAtrributeAndValue( attribute: 'Species', value: character.species, size: size, ),
+              const Text('Appears in episodes', style: TextStyle( fontSize: 20, fontWeight: FontWeight.bold),),
+              const SizedBox( height: 30 ),
 
-            if (character.type != '')
-              CharacterAtrributeAndValue( attribute: 'Type', value: character.type, size: size, ),
-              
-            CharacterAtrributeAndValue( attribute: 'Gender', value: character.gender, size: size, ),
-            CharacterAtrributeAndValue( attribute: 'First seen in', value: character.origin.name, size: size, ),
-            CharacterAtrributeAndValue( attribute: 'Last known location', value: character.location.name, size: size, ),
-          
-          ],
+              EpisodesByCharacter(character: character)
+            
+            ],
+          ),
         ),
       ),
     );

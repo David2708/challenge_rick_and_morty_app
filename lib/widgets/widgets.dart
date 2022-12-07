@@ -1,6 +1,12 @@
 
 
 
+export 'package:rick_and_morty_app/widgets/characterDetailsInfoScreen/slider_name_episode.dart';
+
+export 'package:rick_and_morty_app/widgets/characterDetailsInfoScreen/episodes_by_chracter.dart';
+
+export 'package:rick_and_morty_app/widgets/characterDetailsInfoScreen/episodes_by_chracter.dart';
+
 export 'package:rick_and_morty_app/widgets/general/character_attribute_value.dart';
 export 'package:rick_and_morty_app/widgets/general/character_card_widgets.dart';
 export 'package:rick_and_morty_app/widgets/charactersScreen/character_info_general.dart';
