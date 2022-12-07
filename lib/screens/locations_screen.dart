@@ -12,6 +12,7 @@ class LocationsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
+    final size = MediaQuery.of(context).size;
     final locationsProvider = Provider.of<LocationsProvider>(context);
 
     List<Location> locations = locationsProvider.locations;
@@ -20,20 +21,16 @@ class LocationsScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text( 'Locations' ),
       ),
-      body: Padding(
+      body: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric( horizontal: 20 ),
+            child: LocationsBuilder(locations: locations, onNextPage: locationsProvider.getAllLocations,)
+          ),
 
-        padding: const EdgeInsets.symmetric( horizontal: 20 ),
-
-        child: locations.isEmpty
-            ? const Center(child: CircularProgressIndicator(color: Colors.grey),)
-            : ListView.builder(
-            itemCount: locations.length,
-            itemBuilder: (context, index) => GestureDetector(
-              onTap: () => Navigator.pushNamed(context, 'location', arguments: locations[index]),
-              child: InformationNameWidget(name: locations[index].name)
-              ),
-        ),
-
+          if(locationsProvider.getIsloading() && locationsProvider.getMakeRequest())
+            LoadingData(size: size),
+        ],
       )
     );
   }

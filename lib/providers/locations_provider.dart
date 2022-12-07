@@ -8,21 +8,46 @@ import 'package:http/http.dart' as http;
 class LocationsProvider extends ChangeNotifier{
 
   List<Location> locations = [];
+  late int _locationPage;
+  bool _isLoading = false;
+  late bool _makeRequest; // ya se hizo una peticion ?
+
 
 
   LocationsProvider(){
+    _locationPage = 0;
+    _makeRequest = false;
     getAllLocations();
   }
+
+  getIsloading() => _isLoading;
+  getMakeRequest() => _makeRequest;
   
 
   getAllLocations( ) async {
 
-    final url = Uri.https( 'rickandmortyapi.com', '/api/location' );
-    final response = await http.get(url);
-    final newResponse = AllLocationsModel.fromJson(response.body);
+    if(_isLoading) return;
 
-    locations.addAll(newResponse.results);
-    notifyListeners();
+    _locationPage++;
+    if(_locationPage < 8){
+
+      _isLoading = true;
+       
+      final url = Uri.https( 'rickandmortyapi.com', '/api/location/', {
+        'page':'$_locationPage'
+      } );
+
+      final response = await http.get(url);
+      final newResponse = AllLocationsModel.fromJson(response.body);
+
+      locations.addAll(newResponse.results);
+
+      _isLoading= false;
+      _makeRequest = true;
+      notifyListeners();
+    
+    }
+   
   
   } 
 

@@ -12,20 +12,22 @@ class CharactersProvider extends ChangeNotifier {
 
   List<Character> charcaters = [];
   List<Character> singleCharacters = [];
-  int _charactersPage = 0;
+  late int _charactersPage;
   bool _isLoading = false;
-  bool _makerequest = false;
+  late bool _makeRequest;
 
   Map<String, List<Character>> charactersByLocations = {};
   Map<String, List<Character>> charactersByEpisode = {};
 
 
   CharactersProvider(){
+    _charactersPage = 0;
+    _makeRequest = false;
     getAllCharacters();
   }
 
   getIsloading() => _isLoading;
-  getMakeRequest() => _makerequest;
+  getMakeRequest() => _makeRequest;
 
   setCharacterPage(int value) => _charactersPage = value;
   
@@ -45,7 +47,7 @@ class CharactersProvider extends ChangeNotifier {
 
       charcaters.addAll(newResponse.results);
       _isLoading = false;
-      _makerequest = true;
+      _makeRequest = true;
       notifyListeners();
     }
   }

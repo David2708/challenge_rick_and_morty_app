@@ -9,11 +9,11 @@ import 'info_models.dart';
 
 class AllLocationsModel {
     AllLocationsModel({
-        required this.info,
+        this.info,
         required this.results,
     });
 
-    Info info;
+    Info? info;
     List<Location> results;
 
     factory AllLocationsModel.fromJson(String str) => AllLocationsModel.fromMap(json.decode(str));

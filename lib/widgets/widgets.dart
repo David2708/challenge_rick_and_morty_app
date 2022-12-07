@@ -1,5 +1,9 @@
 
 
+export 'package:rick_and_morty_app/widgets/loadind_data_widget.dart';
+
+export 'package:rick_and_morty_app/widgets/locationsScreen/locations_builder.dart';
+
 export 'package:rick_and_morty_app/widgets/charactersScreen/characters_builde.dart';
 
 export 'package:rick_and_morty_app/widgets/character_attribute_value.dart';
