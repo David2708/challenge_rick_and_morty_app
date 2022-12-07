@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../models/all_locations_model.dart';
 import '../providers/locations_provider.dart';
+import '../widgets/widgets.dart';
 
 class SearchLocationDelegate extends SearchDelegate{
 
@@ -39,16 +40,11 @@ class SearchLocationDelegate extends SearchDelegate{
     );
   }
 
-  Widget _emptyContainer(){
-    return const Center(
-        child: Icon(Icons.location_on_outlined, color: Colors.grey, size: 100), 
-    );
-  }
 
   @override
   Widget buildSuggestions(BuildContext context) {
 
-    if (query == '') return _emptyContainer();
+    if (query == '') return const EmptyContainer( icon: Icons.place_outlined );
 
     final locationProvider = Provider.of<LocationsProvider>(context, listen: false);
     locationProvider.getSuggestionsByQuery(query);
@@ -57,7 +53,7 @@ class SearchLocationDelegate extends SearchDelegate{
       stream: locationProvider.suggestionStream,
       builder: (BuildContext context, AsyncSnapshot<List<Location>> snapshot) {
 
-        if (!snapshot.hasData) return _emptyContainer();
+        if (!snapshot.hasData) return const EmptyContainer( icon: Icons.place_outlined );
 
         locations = snapshot.data!;
 

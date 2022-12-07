@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:rick_and_morty_app/models/all_locations_model.dart';
 
+import '../../models/models.dart';
 import '../widgets.dart';
 
 
-class LocationsBuilder extends StatefulWidget {
+class ListLocations extends StatefulWidget {
   
-  const LocationsBuilder({super.key, required this.locations, required this.onNextPage});
+  const ListLocations({super.key, required this.locations, required this.onNextPage});
 
   final List<Location> locations;
-
   final onNextPage;
 
   @override
-  State<LocationsBuilder> createState() => _LocationsBuilderState();
+  State<ListLocations> createState() => _ListLocationsState();
 }
 
 
-class _LocationsBuilderState extends State<LocationsBuilder> {
+class _ListLocationsState extends State<ListLocations> {
 
   final ScrollController scrollController = ScrollController();
 

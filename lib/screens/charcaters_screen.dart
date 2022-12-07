@@ -16,10 +16,11 @@ class CharactersScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final charcatersProvider = Provider.of<CharactersProvider>(context);
-    List<Character> characters = charcatersProvider.charcaters;
+    final charactersProvider = Provider.of<CharactersProvider>(context);
+    List<Character> characters = charactersProvider.charcaters;
 
     return Scaffold(
+
       appBar: AppBar(
         title: const Text('Characters'),
         actions: [
@@ -29,17 +30,18 @@ class CharactersScreen extends StatelessWidget {
           )
         ],
       ),
+      
       body: Stack(
         children: [
           
           // Muestra la lista de caracteres
           Padding(
             padding: const EdgeInsets.symmetric( horizontal: 20),
-            child: CharacterBuilder( characters: characters, onNextPage: charcatersProvider.getAllCharacters, ),
+            child: ListCharacters( characters: characters, onNextPage: charactersProvider.getAllCharacters, ),
           ),
 
           // si es la primera vez que se estan obteniendo los datos no mostrara el loading
-          if(charcatersProvider.getIsloading() && charcatersProvider.getMakeRequest() )
+          if(charactersProvider.getIsloading() && charactersProvider.getMakeRequest() )
             const LoadingData()
 
         ],

@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:rick_and_morty_app/providers/episodes_provider.dart';
 
 import '../models/all_episodes_model.dart';
+import '../widgets/widgets.dart';
 
 class SearchEpisodeDelegate extends SearchDelegate{
 
@@ -40,16 +41,11 @@ class SearchEpisodeDelegate extends SearchDelegate{
     );
   }
 
-  Widget _emptyContainer(){
-    return const Center(
-        child: Icon(Icons.location_on_outlined, color: Colors.grey, size: 100), 
-    );
-  }
 
   @override
   Widget buildSuggestions(BuildContext context) {
 
-    if (query == '') return _emptyContainer();
+    if (query == '') return const EmptyContainer( icon: Icons.play_circle_outline );
 
     final episodesProvider = Provider.of<EpisodesProvider>(context, listen: false);
     episodesProvider.getSuggestionsByQuery(query);
@@ -58,7 +54,7 @@ class SearchEpisodeDelegate extends SearchDelegate{
       stream: episodesProvider.suggestionStream,
       builder: (BuildContext context, AsyncSnapshot<List<Episode>> snapshot) {
 
-        if (!snapshot.hasData) return _emptyContainer();
+        if (!snapshot.hasData) return const EmptyContainer( icon: Icons.play_circle_outline );
 
         episodes = snapshot.data!;
 

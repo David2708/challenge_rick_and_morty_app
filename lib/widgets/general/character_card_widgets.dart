@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/models.dart';
+import '../../models/models.dart';
 
 class CharacterCard extends StatelessWidget {
 
@@ -21,7 +21,7 @@ class CharacterCard extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: FadeInImage(
-              placeholder: const AssetImage('assets/giphy.gif'), 
+              placeholder: const AssetImage('assets/no-image.jpg'), 
               image: NetworkImage(character.image),
               width: 140,
               height: 180,

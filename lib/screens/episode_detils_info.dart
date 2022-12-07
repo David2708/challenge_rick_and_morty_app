@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:rick_and_morty_app/widgets/widgets.dart';
 
 import '../models/models.dart';
+import '../widgets/widgets.dart';
 
 class EpisodeDetailsInfoScreen extends StatelessWidget {
    

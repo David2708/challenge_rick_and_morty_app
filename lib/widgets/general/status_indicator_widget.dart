@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/all_charcaters_response.dart';
+import '../../models/models.dart';
 
 class StatusIndicator extends StatelessWidget {
   const StatusIndicator({

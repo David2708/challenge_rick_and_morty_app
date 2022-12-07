@@ -113,7 +113,7 @@ class _CharacterImage extends StatelessWidget {
     return ClipRRect(
       borderRadius: const BorderRadius.only( topLeft: Radius.circular(20) , bottomLeft:  Radius.circular(20) ),
       child: FadeInImage(
-        placeholder: const AssetImage('assets/giphy.gif'), 
+        placeholder: const AssetImage('assets/no-image.jpg'), 
         image: NetworkImage( urlImage ),
         height: 160,
         width: 160,

@@ -3,15 +3,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rick_and_morty_app/providers/characters_provider.dart';
+import 'package:rick_and_morty_app/widgets/widgets.dart';
 
 import '../models/models.dart';
 
 class CharacterSearch extends SearchDelegate{
 
-  late List<Character> characters;
+  late List<Character> characters = [];
 
   @override
-  // TODO: implement searchFieldLabel
   String? get searchFieldLabel => 'Search Character';
 
   @override
@@ -24,6 +24,7 @@ class CharacterSearch extends SearchDelegate{
     ];
   }
 
+
   @override
   Widget? buildLeading(BuildContext context) {
     return IconButton(
@@ -31,6 +32,8 @@ class CharacterSearch extends SearchDelegate{
       icon: const Icon(Icons.arrow_back),
     );
   }
+
+
 
   @override
   Widget buildResults(BuildContext context) {
@@ -41,20 +44,13 @@ class CharacterSearch extends SearchDelegate{
           itemCount: characters.length,
           itemBuilder: (_, index) => _CharacterItem( character: characters[index], ),
     );
-  }
-
-  Widget _emptyContainer(){
-    return const Center(
-        child: Icon(Icons.person, color: Colors.grey, size: 100), 
-    );
+    
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
     
-    if(query.isEmpty){
-      return _emptyContainer();
-    }
+    if(query.isEmpty) return const EmptyContainer( icon: Icons.person );
 
     final charactersProvider = Provider.of<CharactersProvider>(context, listen: false);
     charactersProvider.getSuggestionsByQuery( query );
@@ -63,7 +59,7 @@ class CharacterSearch extends SearchDelegate{
       stream: charactersProvider.suggestionStream,
       builder: ( _ , AsyncSnapshot<List<Character>> snapshot) {
         
-        if( !snapshot.hasData ) return _emptyContainer();
+        if( !snapshot.hasData ) return const EmptyContainer( icon: Icons.person );
 
         characters = snapshot.data!;
 

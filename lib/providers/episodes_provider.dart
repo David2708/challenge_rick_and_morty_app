@@ -9,7 +9,7 @@ import '../models/models.dart';
 
 class EpisodesProvider extends ChangeNotifier {
 
-  late int _epidosePage;
+  late int _episodePage;
   bool _isloading = false;
   late bool _makeRequest;
   List<Episode> episodes = [];
@@ -20,7 +20,7 @@ class EpisodesProvider extends ChangeNotifier {
 
 
   EpisodesProvider(){
-    _epidosePage = 1;
+    _episodePage = 1;
     _makeRequest = false;
     getEpisodes();
   }
@@ -30,7 +30,6 @@ class EpisodesProvider extends ChangeNotifier {
   Stream<List<Episode>> get suggestionStream => _suggestionStreamController.stream;
 
   getIsloading() => _isloading;
-
   getmakeRequest() => _makeRequest;
 
   Future<List<Episode>> getEpisodeByName( String name ) async {
@@ -52,17 +51,17 @@ class EpisodesProvider extends ChangeNotifier {
 
     if(_isloading) return;
 
-    if(_epidosePage <= 3){
+    if(_episodePage <= 3){
       _isloading = true;
       final url = Uri.https( 'rickandmortyapi.com', '/api/episode', {
-      'page': '$_epidosePage' 
+      'page': '$_episodePage' 
       });
       final response = await http.get(url);
       final newResponse = AllEpisodesModel.fromJson(response.body);
       episodes.addAll(newResponse.results);
       _isloading = false;
       _makeRequest = true;
-      _epidosePage++;
+      _episodePage++;
       notifyListeners();
     }
   }

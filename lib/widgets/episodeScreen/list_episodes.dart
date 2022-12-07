@@ -22,7 +22,7 @@ class _EpisodeBuilderState extends State<EpisodeBuilder> {
   void initState() {
     super.initState();
     scrollController.addListener(() {
-      if(scrollController.position.pixels == scrollController.position.maxScrollExtent){
+      if(scrollController.position.pixels >= scrollController.position.maxScrollExtent - 200){
         widget.onNexPage();
       }
     });

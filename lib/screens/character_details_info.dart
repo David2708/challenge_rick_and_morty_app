@@ -1,6 +1,5 @@
-
-
 import 'package:flutter/material.dart';
+
 import 'package:rick_and_morty_app/models/all_charcaters_response.dart';
 import 'package:rick_and_morty_app/widgets/widgets.dart';
 
@@ -17,14 +16,17 @@ class CharacterDetailInfoScreen extends StatelessWidget {
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
+
             // Imagen y nombre del personaje
             _CustomAppBar(character: character),
             SliverList(
               delegate: SliverChildListDelegate([
 
+                // Informacion del personaje
                 _DetailsInfo( character: character ),
 
-                const SizedBox(height: 500,)
+                const SizedBox(height: 300)
+
               ]),
             ),
           ],
@@ -48,20 +50,27 @@ class _DetailsInfo extends StatelessWidget {
     final Size size = MediaQuery.of(context).size;
 
     return Padding(
+      
       padding: const EdgeInsets.symmetric(horizontal: 20),
+      
       child: Container(
         margin: const EdgeInsets.only(top: 40),
         width: double.infinity,
+        
         child: Column(
           children: [
+
             CharacterStatus( character: character, size: size, ),
             Container( margin: const EdgeInsets.only( bottom: 20 ) ),
             CharacterAtrributeAndValue( attribute: 'Species', value: character.species, size: size, ),
+
             if (character.type != '')
               CharacterAtrributeAndValue( attribute: 'Type', value: character.type, size: size, ),
+              
             CharacterAtrributeAndValue( attribute: 'Gender', value: character.gender, size: size, ),
             CharacterAtrributeAndValue( attribute: 'First seen in', value: character.origin.name, size: size, ),
             CharacterAtrributeAndValue( attribute: 'Last known location', value: character.location.name, size: size, ),
+          
           ],
         ),
       ),

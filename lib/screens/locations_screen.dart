@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import 'package:rick_and_morty_app/providers/locations_provider.dart';
 import 'package:rick_and_morty_app/search/search_location.dart';
 
-import '../models/all_locations_model.dart';
+import '../models/models.dart';
 import '../widgets/widgets.dart';
 
 class LocationsScreen extends StatelessWidget {
@@ -14,8 +15,6 @@ class LocationsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     
     final locationsProvider = Provider.of<LocationsProvider>(context);
-
-    print('${locationsProvider.getIsloading()} - ${locationsProvider.getMakeRequest()}');
 
     List<Location> locations = locationsProvider.locations;
     
@@ -31,13 +30,15 @@ class LocationsScreen extends StatelessWidget {
       ),
       body: Stack(
         children: [
+
           Padding(
             padding: const EdgeInsets.symmetric( horizontal: 20 ),
-            child: LocationsBuilder(locations: locations, onNextPage: locationsProvider.getAllLocations,)
+            child: ListLocations(locations: locations, onNextPage: locationsProvider.getAllLocations,)
           ),
 
           if(locationsProvider.getIsloading() && locationsProvider.getMakeRequest())
             const LoadingData(),
+            
         ],
       )
     );

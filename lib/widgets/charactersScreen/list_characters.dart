@@ -3,19 +3,19 @@ import 'package:flutter/material.dart';
 import '../../models/models.dart';
 import '../widgets.dart';
 
-class CharacterBuilder extends StatefulWidget {
+class ListCharacters extends StatefulWidget {
 
-  const CharacterBuilder({super.key, required this.characters, required this.onNextPage});
+  const ListCharacters({super.key, required this.characters, required this.onNextPage});
 
   final List<Character> characters;
   final onNextPage;
 
   @override
-  State<CharacterBuilder> createState() => CharacterBuilderState();
+  State<ListCharacters> createState() => ListCharactersState();
 }
 
 
-class CharacterBuilderState extends State<CharacterBuilder> {
+class ListCharactersState extends State<ListCharacters> {
 
   final ScrollController scrollController = ScrollController();
 

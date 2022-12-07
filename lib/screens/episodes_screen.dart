@@ -19,8 +19,6 @@ class EpisodesScreen extends StatelessWidget {
     final episodesProvider = Provider.of<EpisodesProvider>(context);
     List<Episode> episodes = episodesProvider.episodes;
 
-    print('${episodesProvider.getIsloading()} - ${episodesProvider.getmakeRequest()}');
-
     return  Scaffold(
       appBar: AppBar(
         title: const Text('Episodes'),
@@ -38,7 +36,7 @@ class EpisodesScreen extends StatelessWidget {
             child: EpisodeBuilder(episodes: episodes, onNexPage: episodesProvider.getEpisodes,)
           ),
 
-          if(episodesProvider.getIsloading() && episodesProvider.getmakeRequest())
+          if(episodesProvider.getmakeRequest() && episodesProvider.getIsloading())
             const LoadingData()
         ],
       )

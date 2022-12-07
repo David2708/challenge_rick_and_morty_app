@@ -46,6 +46,7 @@ class CharactersByEpisode extends StatelessWidget {
           height: 220,
           width: double.infinity,
           child: ListView.builder(
+            physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
             itemCount: characters.length,
             itemBuilder: (context, index) => GestureDetector(

@@ -54,7 +54,7 @@ class LocationsProvider extends ChangeNotifier{
   getAllLocations( ) async {
 
     if(_isLoading) return;
-
+    
     if(_locationPage <= 7){
       _isLoading = true;
       final url = Uri.https( 'rickandmortyapi.com', '/api/location/', {

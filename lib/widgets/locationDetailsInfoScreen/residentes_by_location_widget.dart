@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import 'package:rick_and_morty_app/providers/characters_provider.dart';
 
 import '../../models/models.dart';
@@ -44,6 +45,7 @@ class ResidentsByLocations extends StatelessWidget {
           height: 220,
           width: double.infinity,
           child: ListView.builder(
+            physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
             itemCount: characters.length,
             itemBuilder: (context, index) => GestureDetector(
