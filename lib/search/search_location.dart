@@ -32,7 +32,7 @@ class SearchLocationDelegate extends SearchDelegate{
   @override
   Widget buildResults(BuildContext context) {
 
-    if(locations.isEmpty) return Container();
+    if(locations.isEmpty) return const NotFound();
     
     return ListView.builder(
           itemCount: locations.length,
@@ -56,6 +56,8 @@ class SearchLocationDelegate extends SearchDelegate{
         if (!snapshot.hasData) return const EmptyContainer( icon: Icons.place_outlined );
 
         locations = snapshot.data!;
+
+        if(locations.isEmpty) return const NotFound();
 
         return ListView.builder(
           itemCount: locations.length,

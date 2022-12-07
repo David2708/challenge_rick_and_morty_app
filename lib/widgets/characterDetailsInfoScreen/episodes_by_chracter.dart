@@ -31,7 +31,7 @@ class EpisodesByCharacter extends StatelessWidget {
 
         if( !snapshot.hasData ){
           return const SizedBox(
-            height: 220,
+            height: 40,
             width: double.infinity,
             child:  Center(
               child: CircularProgressIndicator( color: Colors.grey,),
@@ -40,7 +40,6 @@ class EpisodesByCharacter extends StatelessWidget {
         }
 
         final List<Episode> episodes = snapshot.data!;
-        print(episodes);
 
         return SizedBox(
           height: 40,

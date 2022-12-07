@@ -49,6 +49,7 @@ class LocationsProvider extends ChangeNotifier{
     return [];
 
   }
+
   
 
   getAllLocations( ) async {

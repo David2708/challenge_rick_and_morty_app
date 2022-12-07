@@ -7,6 +7,9 @@ import '../widgets/widgets.dart';
 class LocationDetailInfoScreen extends StatelessWidget {
    
   const LocationDetailInfoScreen({Key? key}) : super(key: key);
+
+  @override
+  String? get searchFieldLabel => 'Search locations';
   
   @override
   Widget build(BuildContext context) {
@@ -31,13 +34,14 @@ class LocationDetailInfoScreen extends StatelessWidget {
                LocationInfo( location: location ),
                const SizedBox(height: 50),
 
-               const Padding(
-                 padding: EdgeInsets.only( left: 20 ),
-                 child: Text('Residents', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-               ),
-               const SizedBox(height: 30),
-               
-               ResidentsByLocations(location: location),
+               if(location.residents.isNotEmpty)
+                const Padding(
+                  padding: EdgeInsets.only( left: 20 ),
+                  child: Text('Residents', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                ),
+                const SizedBox(height: 30),
+                
+                ResidentsByLocations(location: location),
            ],
          ),
         ),

@@ -13,6 +13,9 @@ class SearchEpisodeDelegate extends SearchDelegate{
   List<Episode> episodes = [];
 
   @override
+  String? get searchFieldLabel => 'Search Episodes';
+
+  @override
   List<Widget>? buildActions(BuildContext context) {
     return [
       IconButton(
@@ -33,7 +36,7 @@ class SearchEpisodeDelegate extends SearchDelegate{
   @override
   Widget buildResults(BuildContext context) {
 
-    if(episodes.isEmpty) return Container();
+    if(episodes.isEmpty) return const NotFound();
     
     return ListView.builder(
           itemCount: episodes.length,
@@ -57,6 +60,8 @@ class SearchEpisodeDelegate extends SearchDelegate{
         if (!snapshot.hasData) return const EmptyContainer( icon: Icons.play_circle_outline );
 
         episodes = snapshot.data!;
+
+        if(episodes.isEmpty) return const NotFound();
 
         return ListView.builder(
           itemCount: episodes.length,

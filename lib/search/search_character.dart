@@ -38,7 +38,7 @@ class CharacterSearch extends SearchDelegate{
   @override
   Widget buildResults(BuildContext context) {
 
-    if(characters.isEmpty) return Container();
+    if(characters.isEmpty) return const NotFound();
 
     return ListView.builder(
           itemCount: characters.length,
@@ -62,6 +62,8 @@ class CharacterSearch extends SearchDelegate{
         if( !snapshot.hasData ) return const EmptyContainer( icon: Icons.person );
 
         characters = snapshot.data!;
+
+        if(characters.isEmpty) return const NotFound();
 
         return ListView.builder(
           itemCount: characters.length,
