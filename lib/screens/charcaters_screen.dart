@@ -7,6 +7,7 @@ import 'package:rick_and_morty_app/providers/characters_provider.dart';
 import 'package:rick_and_morty_app/widgets/widgets.dart';
 
 import '../models/all_charcaters_response.dart';
+import '../search/search_character.dart';
 
 class CharactersScreen extends StatelessWidget {
 
@@ -17,11 +18,16 @@ class CharactersScreen extends StatelessWidget {
 
     final charcatersProvider = Provider.of<CharactersProvider>(context);
     List<Character> characters = charcatersProvider.charcaters;
-    final size = MediaQuery.of(context).size;
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Characters'),
+        actions: [
+          IconButton(
+            onPressed: () => showSearch(context: context, delegate: CharacterSearch()), 
+            icon: const Icon(Icons.search_outlined)
+          )
+        ],
       ),
       body: Stack(
         children: [

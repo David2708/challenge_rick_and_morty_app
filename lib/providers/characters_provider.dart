@@ -4,6 +4,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:rick_and_morty_app/helpers/debouncer.dart';
 
 import 'package:rick_and_morty_app/models/all_charcaters_response.dart';
 
@@ -15,6 +16,10 @@ class CharactersProvider extends ChangeNotifier {
   late int _charactersPage;
   bool _isLoading = false;
   late bool _makeRequest;
+
+  final debouncer = Debouncer(
+    duration: const Duration( milliseconds: 500 ),
+  );
 
   Map<String, List<Character>> charactersByLocations = {};
   Map<String, List<Character>> charactersByEpisode = {};
@@ -50,6 +55,26 @@ class CharactersProvider extends ChangeNotifier {
       _charactersPage ++;
       notifyListeners();
     }
+  }
+
+  final StreamController<List<Character>> _suggestionStreamController = StreamController.broadcast();
+
+  Stream<List<Character>> get suggestionStream => _suggestionStreamController.stream;
+
+
+  Future<List<Character>> getCharacterByName( String name ) async {
+
+    final url = Uri.https( 'rickandmortyapi.com' , '/api/character/', {
+      'name' : name
+    });
+    final response = await http.get(url);
+    if ( response.statusCode == 200 ){
+      final newResponse = AllCharactersResponse.fromJson(response.body);
+      return newResponse.results;
+    }
+
+    return [];
+
   }
 
   getASingleCharacter( String id ) async{
@@ -95,5 +120,21 @@ class CharactersProvider extends ChangeNotifier {
     return listCharacters;
   }
   
+
+  void getSuggestionsByQuery(String searchTerm){
+    debouncer.value = '';
+    debouncer.onValue =(value) async {
+      final results = await getCharacterByName(value);
+      _suggestionStreamController.add(results);
+    };
+
+    final timer = Timer.periodic(const Duration(milliseconds: 200), ( _ ) { 
+      debouncer.value = searchTerm;
+    });
+
+    Future.delayed(const Duration( milliseconds: 201 )).then((value) => timer.cancel());
+
+  }
+
 
 }
