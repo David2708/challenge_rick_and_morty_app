@@ -1,7 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
+import '../helpers/debouncer.dart';
 import '../models/all_locations_model.dart';
 import 'package:http/http.dart' as http;
+
 
 
 
@@ -12,6 +16,9 @@ class LocationsProvider extends ChangeNotifier{
   bool _isLoading = false;
   late bool _makeRequest; // ya se hizo una peticion ?
 
+  final debouncer = Debouncer(
+    duration: const Duration( milliseconds: 500 ),
+  );
 
 
   LocationsProvider(){
@@ -20,8 +27,28 @@ class LocationsProvider extends ChangeNotifier{
     getAllLocations();
   }
 
+  final StreamController<List<Location>> _suggestionStreamController = StreamController.broadcast();
+
+  Stream<List<Location>> get suggestionStream => _suggestionStreamController.stream;
+
   getIsloading() => _isLoading;
   getMakeRequest() => _makeRequest;
+
+
+  Future<List<Location>> getLocationByName( String name ) async {
+
+    final url = Uri.https( 'rickandmortyapi.com' , '/api/location/', {
+      'name' : name
+    });
+    final response = await http.get(url);
+    if ( response.statusCode == 200 ){
+      final newResponse = AllLocationsModel.fromJson(response.body);
+      return newResponse.results;
+    }
+
+    return [];
+
+  }
   
 
   getAllLocations( ) async {
@@ -44,9 +71,22 @@ class LocationsProvider extends ChangeNotifier{
       notifyListeners();
     
     }
-   
-  
   } 
+
+  void getSuggestionsByQuery(String searchTerm){
+    debouncer.value = '';
+    debouncer.onValue =(value) async {
+      final results = await getLocationByName(value);
+      _suggestionStreamController.add(results);
+    };
+
+    final timer = Timer.periodic(const Duration(milliseconds: 200), ( _ ) { 
+      debouncer.value = searchTerm;
+    });
+
+    Future.delayed(const Duration( milliseconds: 201 )).then((value) => timer.cancel());
+
+  }
 
 
 }

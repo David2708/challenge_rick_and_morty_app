@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rick_and_morty_app/providers/locations_provider.dart';
+import 'package:rick_and_morty_app/search/search_location.dart';
 
 import '../models/all_locations_model.dart';
 import '../widgets/widgets.dart';
@@ -21,6 +22,12 @@ class LocationsScreen extends StatelessWidget {
     return  Scaffold(
       appBar: AppBar(
         title: const Text( 'Locations' ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search_outlined),
+            onPressed: () => showSearch(context: context, delegate: SearchLocationDelegate()),
+          )
+        ],
       ),
       body: Stack(
         children: [

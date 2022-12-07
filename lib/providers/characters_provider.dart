@@ -36,6 +36,9 @@ class CharactersProvider extends ChangeNotifier {
 
   setCharacterPage(int value) => _charactersPage = value;
   
+  final StreamController<List<Character>> _suggestionStreamController = StreamController.broadcast();
+
+  Stream<List<Character>> get suggestionStream => _suggestionStreamController.stream;
 
   Future getAllCharacters( ) async {
 
@@ -56,11 +59,6 @@ class CharactersProvider extends ChangeNotifier {
       notifyListeners();
     }
   }
-
-  final StreamController<List<Character>> _suggestionStreamController = StreamController.broadcast();
-
-  Stream<List<Character>> get suggestionStream => _suggestionStreamController.stream;
-
 
   Future<List<Character>> getCharacterByName( String name ) async {
 

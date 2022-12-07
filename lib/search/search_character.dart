@@ -34,10 +34,13 @@ class CharacterSearch extends SearchDelegate{
 
   @override
   Widget buildResults(BuildContext context) {
+
+    if(characters.isEmpty) return Container();
+
     return ListView.builder(
           itemCount: characters.length,
           itemBuilder: (_, index) => _CharacterItem( character: characters[index], ),
-        );;
+    );
   }
 
   Widget _emptyContainer(){

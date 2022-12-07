@@ -15,32 +15,31 @@ class LocationDetailInfoScreen extends StatelessWidget {
 
     return Scaffold(
       body: SafeArea(
-        child: Center(
-           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+        child: SingleChildScrollView(
+         child: Column(
+           crossAxisAlignment: CrossAxisAlignment.start,
+           children: [
 
-              const SizedBox(height: 50),
+               const SizedBox(height: 50),
 
-              const Padding(
-                padding:  EdgeInsets.only(left: 20),
-                child:  Text('Location Info', style: TextStyle( fontSize: 30 , fontWeight: FontWeight.bold),),
-              ),
-              const SizedBox(height: 50),
+               const Padding(
+                 padding:  EdgeInsets.only(left: 20),
+                 child:  Text('Location Info', style: TextStyle( fontSize: 30 , fontWeight: FontWeight.bold),),
+               ),
+               const SizedBox(height: 50),
 
-              LocationInfo( location: location ),
-              const SizedBox(height: 50),
+               LocationInfo( location: location ),
+               const SizedBox(height: 50),
 
-              const Padding(
-                padding: EdgeInsets.only( left: 20 ),
-                child: Text('Residents', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-              ),
-              const SizedBox(height: 30),
-              
-              ResidentsByLocations(location: location)
-
-            ],
-           ),
+               const Padding(
+                 padding: EdgeInsets.only( left: 20 ),
+                 child: Text('Residents', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+               ),
+               const SizedBox(height: 30),
+               
+               ResidentsByLocations(location: location),
+           ],
+         ),
         ),
       ),
     );
